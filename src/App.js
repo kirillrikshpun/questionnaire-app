@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Box from "@mui/material/Box";
+import MainFormComponent from "./components/MainFormComponent"
+import "./App.css";
 
 function App() {
+  const [questions, setQuestions] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+          const result = await axios("http://localhost:3000/questionnaires");
+          setQuestions(result.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+        {questions ? <MainFormComponent questions={questions}/> : <></>} 
+    </Box>
   );
 }
 
