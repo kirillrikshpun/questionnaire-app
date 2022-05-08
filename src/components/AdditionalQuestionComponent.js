@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TextField, Box } from "@mui/material";
-import { useEffect } from "react";
 
 function AdditionalQuestionComponent({setAdditionalQuestionData, addAnswer, question }) {
     useEffect(

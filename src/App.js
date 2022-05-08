@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Box from "@mui/material/Box";
 import MainFormComponent from "./components/MainFormComponent"
-import "./App.css";
 
 function App() {
   const [questions, setQuestions] = useState();

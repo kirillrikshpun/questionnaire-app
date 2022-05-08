@@ -11,25 +11,14 @@ function MainFormComponent({questions}) {
   };
 
   const handleSubmit = () => {
-    let arrRequired = [];
-    questions.forEach((elem) => {
-      if (elem.required) {
-        arrRequired.push(elem.id);
-      }
-    });
-
+    const arrRequired = questions.filter(q => q.required).map(q => q.id)
     const arrAnswers = Object.entries(answers)
       .filter(([_key, value]) => value || value === false)
       .map((a) => parseInt(a[0]));
-
-    const arrUnvalid = arrRequired.filter((a) => {
-      return !arrAnswers.includes(a);
-    });
-
+    const arrUnvalid = arrRequired.filter(a => !arrAnswers.includes(a))
     setUnvalids(arrUnvalid);
 
     arrUnvalid.length > 0 ? <></> : window.alert(JSON.stringify(answers, 0, 2)) 
-    
   };
 
   return (
